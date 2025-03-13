@@ -28,13 +28,13 @@ def scrape_tweets(username, num_tweets):
         timestamp = time.strftime("%Y%m%d-%H%M%S")
         filename = f"{username}_tweets_{timestamp}.csv"
         tweets_df = pd.DataFrame(attributes_container, columns=columns)
-        tweets_df.to_csv(filename, index=False)  # Save to CSV
+        tweets_df.to_csv(filename, index=False) 
         print(f"✅ Scraped {num_tweets} tweets from @{username} and saved to {filename}")
 
     except tweepy.errors.TweepyException:
         print("⚠️ Rate limit reached. Waiting for reset...")
-        time.sleep(15 * 60)  # Sleep for 15 minutes
-        scrape_tweets(username, num_tweets)  # Retry after waiting
+        time.sleep(15 * 60)  
+        scrape_tweets(username, num_tweets) 
     except tweepy.TweepError as e:
         print(f"❌ Tweepy error: {str(e)}")
     except Exception as e:
