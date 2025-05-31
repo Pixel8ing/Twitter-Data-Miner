@@ -1,56 +1,76 @@
-Twitter Data Scraper
-A Python-based Twitter scraper using Tweepy that extracts tweets from a specific user and saves them in a CSV file.
+ Twitter Sentiment Analysis Tool
+A comprehensive Python tool for scraping Twitter data and performing advanced sentiment analysis with beautiful visualizations.
 
 Features
-Scrapes recent tweets from a Twitter user.
-Saves tweets in a structured CSV format.
-Includes error handling and rate-limit management.
-Supports command-line arguments for username and tweet count.
 
-Clone this repository:
-git clone https://github.com/yourusername/twitter-data-scraper.git
-cd twitter-data-scraper
+Dual Sentiment Analysis: Uses both TextBlob and VADER sentiment analyzers
+Real-time Data Scraping: Fetches tweets directly from Twitter API
+Comprehensive Data Export: Saves detailed CSV files with all metrics
+Beautiful Visualizations: Generates professional charts and graphs
+Text Preprocessing: Cleans tweets for better analysis accuracy
+Rate Limit Handling: Automatically manages Twitter API rate limits
+Progress Tracking: Real-time progress updates during analysis
 
-Create a virtual environment (optional but recommended):
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+ Analysis Methods
+TextBlob Analysis
 
-Install dependencies:
-pip install tweepy pandas
+Polarity: Measures sentiment from -1 (negative) to +1 (positive)
+Subjectivity: Measures objectivity from 0 (objective) to 1 (subjective)
 
-Setup Twitter API Keys
-To use this scraper, you need to set up a Twitter Developer Account and create an application to get API keys.
+VADER Analysis
 
-Go to Twitter Developer Portal.
-Create an App and generate:
-API Key
-API Secret Key
-Access Token
-Access Token Secret
-Update twitter_scraper.py with your credentials.
+Compound Score: Overall sentiment intensity from -1 to +1
+Detailed Breakdown: Positive, neutral, and negative sentiment percentages
+Social Media Optimized: Specially designed for informal text analysis
 
-Run the script in the terminal:
+ Quick Start
+Prerequisites
+bashpip install tweepy pandas textblob vaderSentiment matplotlib seaborn
+Twitter API Setup
 
-python twitter_scraper.py <username> <num_tweets>
-Example:
+Create a Twitter Developer account at developer.twitter.com
+Create a new app and generate API keys
+Replace the placeholder credentials in the code:
 
-python twitter_scraper.py elonmusk 25
+pythonclient = tweepy.Client(
+    consumer_key="YOUR_CONSUMER_KEY",
+    consumer_secret="YOUR_CONSUMER_SECRET",
+    access_token="YOUR_ACCESS_TOKEN",
+    access_token_secret="YOUR_ACCESS_TOKEN_SECRET",
+    wait_on_rate_limit=True
+)
 
-(This will scrape 25 tweets from @elonmusk and save them to a CSV file.)
+Usage
 
-Common Issues & Fixes
-401 Unauthorized (Authentication Error)
-  Check if your API keys are correct.
-  Ensure your Twitter Developer App has read permissions.
-  
-Rate Limit Reached
-  Twitter restricts API calls; the script waits for 15 minutes if needed.
-  Try again after some time.
-  
-ModuleNotFoundError: No module named ‘tweepy’
-  Run pip install tweepy pandas again.
-  
-To-Do List
-   Add support for scraping tweets using hashtags.
-   Implement sentiment analysis on tweets.
-   Store data in a database instead of CSV.
+bashpython twitter_sentiment_scraper.py <username> <number_of_tweets>
+
+Examples:
+bashpython twitter_sentiment_scraper.py elonmusk 50
+python twitter_sentiment_scraper.py taylorswift13 100
+python twitter_sentiment_scraper.py nasa 25
+
+Output Files
+1. CSV Data File
+Contains comprehensive tweet data with sentiment metrics:
+
+Basic tweet information (date, likes, source, text)
+Cleaned text for analysis
+TextBlob sentiment scores
+VADER sentiment scores
+Detailed sentiment breakdowns
+
+2. Visualization File
+Professional charts including:
+
+Sentiment Distribution Pie Charts (TextBlob & VADER)
+Sentiment Trends Over Time
+Polarity vs Subjectivity Scatter Plot
+Engagement Analysis
+
+3. Console Summary
+Real-time statistics including:
+
+Sentiment distribution percentages
+Average sentiment scores
+Most positive/negative tweets
+Processing progress
